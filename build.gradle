@@ -5,6 +5,7 @@
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds/
  */
 
+
 buildscript {
     ext {
         springBootVersion = "2.0.6.RELEASE"
@@ -26,17 +27,29 @@ plugins {
 
 apply plugin: 'org.springframework.boot'
 
+
+bootRun.environment([
+        "WELCOME_MESSAGE": "hello",
+])
+
+test.environment([
+        "WELCOME_MESSAGE": "Hello from test",
+])
+
 repositories {
     mavenCentral()
 }
 
 dependencies {
     //compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+
     compile("org.hibernate.validator:hibernate-validator:6.0.13.Final")
     compile("org.springframework:spring-web:5.0.10.RELEASE")
     compile("org.springframework:spring-webmvc:5.0.10.RELEASE")
     compile("org.springframework.boot:spring-boot-starter:2.0.6.RELEASE")
     compile("org.springframework.boot:spring-boot-starter-json:2.0.6.RELEASE")
     compile("org.springframework.boot:spring-boot-starter-tomcat:2.0.6.RELEASE")
+
 }
 
